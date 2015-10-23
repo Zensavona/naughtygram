@@ -1,0 +1,2 @@
+defmodule Naughtygram do
+end
