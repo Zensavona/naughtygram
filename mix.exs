@@ -3,11 +3,13 @@ defmodule Naughtygram.Mixfile do
 
   def project do
     [app: :naughtygram,
-     version: "0.0.1",
-     elixir: "~> 1.0",
+     version: "0.1.1",
+     elixir: "~> 1.1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
+     description: description,
+     package: package,
      deps: deps]
   end
 
@@ -42,6 +44,22 @@ defmodule Naughtygram.Mixfile do
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
       {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
       {:dotenv, "~> 1.0.0", only: [:dev, :test]}
+    ]
+  end
+
+  defp description do
+    """
+    Instagram Private API client library for Elixir.
+    """
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      keywords: ["Elixir", "Instagram", "instagram", "REST", "HTTP", "API", "Private", "naughty"],
+      maintainers: ["Zen Savona"],
+      links: %{"GitHub" => "https://github.com/zensavona/naughtygram",
+               "Docs" => "https://hexdocs.pm/naughtygram"}
     ]
   end
 end
