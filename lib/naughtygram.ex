@@ -3,7 +3,6 @@ defmodule Naughtygram do
   Main functionality for interacting with the private Instagram API
   """
   @url "https://instagram.com/api/v1"
-  alias Naughtygram.Identity
   alias Naughtygram.Crypto
   alias Naughtygram.Cookie
 
@@ -144,6 +143,9 @@ defmodule Naughtygram do
     end
   end
 
+  @doc """
+  Comment on some media
+  """
   def add_comment(id, text, identity, cookies) do
     url = @url <> "/media/#{id}/comment/"
     options = [hackney: [cookie: cookies, follow_redirect: true]]

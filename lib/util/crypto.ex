@@ -11,7 +11,7 @@ defmodule Naughtygram.Crypto do
   def signed_body(data) do
     signature = sign(data)
     data = URI.encode(data, &(URI.char_unreserved?/1))
-    body = "ig_sig_key_version=4&src=single&d=0&signed_body=#{signature}.#{data}"
+    "ig_sig_key_version=4&src=single&d=0&signed_body=#{signature}.#{data}"
   end
 
   defp sign(data) do
