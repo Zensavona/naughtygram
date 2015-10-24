@@ -1,10 +1,15 @@
 defmodule NaughtygramTest do
-  use ExUnit.Case
-
+  use ExUnit.Case, async: false
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
   @username System.get_env("IG_USERNAME")
   @password System.get_env("IG_PASSWORD")
   @media_id System.get_env("IG_MEDIA")
   @user_id System.get_env("IG_USER")
+
+  setup_all do
+    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes", "fixture/custom_cassettes")
+    :ok
+  end
 
   test "can authenticate with username and password" do
     identity = Naughtygram.Identity.create_random
@@ -18,7 +23,6 @@ defmodule NaughtygramTest do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
     {response, _} = Naughtygram.like_media @media_id, identity, cookies
-
     assert response == :ok
   end
 
@@ -26,7 +30,6 @@ defmodule NaughtygramTest do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
     {response, _} = Naughtygram.unlike_media @media_id, identity, cookies
-
     assert response == :ok
   end
 
@@ -34,7 +37,6 @@ defmodule NaughtygramTest do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
     {response, _} = Naughtygram.follow_user @user_id, identity, cookies
-
     assert response == :ok
   end
 
@@ -42,16 +44,17 @@ defmodule NaughtygramTest do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
     {response, _} = Naughtygram.unfollow_user @user_id, identity, cookies
-
     assert response == :ok
   end
 
   test "can comment on a media item" do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
-    text = "Film or digitial? Amazing tones :D"
-    {response, _} = Naughtygram.add_comment @media_id, text, identity, cookies
-    assert response == :ok
+    text = "notbad/10"
+    use_cassette "comment" do
+      {response, _} = Naughtygram.add_comment @media_id, text, identity, cookies
+      assert response == :ok
+    end
   end
 
 end
