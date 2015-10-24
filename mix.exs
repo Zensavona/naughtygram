@@ -37,7 +37,7 @@ defmodule Naughtygram.Mixfile do
       {:httpoison, "~> 0.7.4"},
       {:exprintf, "~> 0.1.6"},
       {:poison, "~> 1.5"},
-      # {:exvcr, "~> 0.3", only: [:dev, :test]},
+      {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
       {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
