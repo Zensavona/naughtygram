@@ -2,7 +2,7 @@ defmodule Naughtygram do
   @moduledoc """
   Main functionality for interacting with the private Instagram API
   """
-  @url "http://instagram.com/api/v1"
+  @url "https://instagram.com/api/v1"
   alias Naughtygram.Identity
   alias Naughtygram.Crypto
   alias Naughtygram.Cookie
@@ -34,19 +34,25 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
-    resp = HTTPoison.post!(@url<>"accounts/login/", body, headers)
+    resp = HTTPoison.post!(@url<>"/accounts/login/", body, headers)
 
-    cookies = Enum.filter_map(resp.headers,
-                              fn(x) -> Cookie.parse(x) != :nah end,
-                              &(Cookie.parse/1))
-    List.insert_at(cookies, -1, {"igfl", username})
+    case resp do
+      %{status_code: 200} ->
+        cookies = Enum.filter_map(resp.headers,
+                                  fn(x) -> Cookie.parse(x) != :nah end,
+                                  &(Cookie.parse/1))
+        cookies = List.insert_at(cookies, -1, {"igfl", username})
+        {:ok, cookies}
+      _ ->
+        {:err, "reason"}
+    end
   end
 
   @doc """
   Likes a media item as the user asociated with passed cookie and identity.
   """
   def like_media(id, identity, cookies) do
-    url = @url <> "media/#{id}/like/"
+    url = @url <> "/media/#{id}/like/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
     body = Crypto.signed_body("{\"media_id\":\"#{id}\"}")
@@ -70,7 +76,7 @@ defmodule Naughtygram do
   Unlikes a media item as the user asociated with passed cookie and identity.
   """
   def unlike_media(id, identity, cookies) do
-    url = @url <> "media/#{id}/unlike/"
+    url = @url <> "/media/#{id}/unlike/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
     body = Crypto.signed_body("{\"media_id\":\"#{id}\"}")
