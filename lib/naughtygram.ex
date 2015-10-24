@@ -144,4 +144,24 @@ defmodule Naughtygram do
     end
   end
 
+  def add_comment(id, text, identity, cookies) do
+    url = @url <> "/media/#{id}/comment/"
+    options = [hackney: [cookie: cookies, follow_redirect: true]]
+    body = Crypto.signed_body("{\"comment_text\":\"#{text}\"}")
+
+    headers = [
+      {"User-Agent", identity.user_agent},
+      {"Content-Type", "application/x-www-form-urlencoded"}
+    ]
+
+    HTTPoison.start
+    response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
+    case response do
+      %{"status" => "ok"} ->
+        {:ok, "new_csrf_token"}
+      _ ->
+        :err
+    end
+  end
+
 end
