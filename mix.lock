@@ -1,5 +1,6 @@
 %{"continuum": {:git, "git://github.com/meh/continuum.git", "4125f9d428971568f16da78cec24fddce18d6eca", []},
   "cookiejar": {:git, "https://github.com/shurizzle/elixir-cookiejar.git", "e6a65309e570906b0bc9f7b4fb566a31e21e8500", []},
+  "dotenv": {:hex, :dotenv, "1.0.0"},
   "ex_doc": {:hex, :ex_doc, "0.10.0"},
   "exactor": {:hex, :exactor, "2.2.0"},
   "excoveralls": {:hex, :excoveralls, "0.4.0"},

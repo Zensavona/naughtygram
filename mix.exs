@@ -15,8 +15,13 @@ defmodule Naughtygram.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :httpoison, :poison]]
+    [applications: app_list(Mix.env)]
   end
+
+  defp app_list(:dev), do: [:dotenv | app_list]
+  defp app_list(:test), do: [:dotenv | app_list]
+  defp app_list(_), do: app_list
+  defp app_list, do: [:logger, :httpoison, :poison]
 
   # Dependencies can be Hex packages:
   #
@@ -32,10 +37,11 @@ defmodule Naughtygram.Mixfile do
       {:httpoison, "~> 0.7.4"},
       {:exprintf, "~> 0.1.6"},
       {:poison, "~> 1.5"},
-      {:exvcr, "~> 0.3", only: [:dev, :test]},
+      # {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]}
+      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
+      {:dotenv, "~> 1.0.0", only: [:dev, :test]}
     ]
   end
 end
