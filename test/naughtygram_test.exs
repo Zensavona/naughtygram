@@ -19,6 +19,14 @@ defmodule NaughtygramTest do
     assert length(cookies) == 6
   end
 
+  test "returns expected error messages" do
+    identity = Naughtygram.Identity.create_random
+
+    {response, reason} = Naughtygram.login_and_return_cookies "nah", "m8", identity
+    assert response == :err
+    assert reason == "reason"
+  end
+
   test "can like some media" do
     identity = Naughtygram.Identity.create_random
     {_, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity

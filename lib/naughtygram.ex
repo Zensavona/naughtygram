@@ -67,7 +67,7 @@ defmodule Naughtygram do
       %{"status" => "ok"} ->
         {:ok, "new_csrf_token"}
       _ ->
-        :err
+        {:err, "reason"}
     end
   end
 
@@ -91,7 +91,7 @@ defmodule Naughtygram do
       %{"status" => "ok"} ->
         {:ok, "new_csrf_token"}
       _ ->
-        :err
+        {:err, "reason"}
     end
   end
 
@@ -115,7 +115,7 @@ defmodule Naughtygram do
       %{"status" => "ok"} ->
         {:ok, "new_csrf_token"}
       _ ->
-        :err
+        {:err, "reason"}
     end
   end
 
@@ -139,7 +139,7 @@ defmodule Naughtygram do
       %{"status" => "ok"} ->
         {:ok, "new_csrf_token"}
       _ ->
-        :err
+        {:err, "reason"}
     end
   end
 
@@ -162,7 +162,7 @@ defmodule Naughtygram do
       %{"status" => "ok"} ->
         {:ok, "new_csrf_token"}
       _ ->
-        :err
+        {:err, "reason"}
     end
   end
 
