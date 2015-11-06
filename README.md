@@ -9,3 +9,11 @@
 Use at your own risk, this probably violates their TOS.
 
 ** TODO: add examples **
+
+
+## Changelog
+
+### 0.1.3
+
+- remove uneeded items from HTTP reqs
+- add the `Naughtygram.upload_media/4` function for (who would have guessed it...) uploading media.
