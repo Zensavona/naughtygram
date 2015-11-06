@@ -45,7 +45,7 @@ defmodule Naughtygram do
         {:ok, cookies}
       _ ->
         IO.inspect resp
-        {:err, "reason"}
+        {:err, resp}
     end
   end
 
@@ -188,8 +188,10 @@ defmodule Naughtygram do
       %{"media_id" => media_id, "status" => "ok"} ->
         configure(media_id, caption, identity, cookies)
         # {:ok, media_id}
+      %{"status" => "fail"} ->
+        {:err, response.message}
       _ ->
-        {:err, "reason"}
+        {:err, response}
     end
   end
 
@@ -218,13 +220,14 @@ defmodule Naughtygram do
     body = Crypto.signed_body(data)
 
     HTTPoison.start
-    response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
+    request = HTTPoison.post!(url, body, headers, options)
+    response = Poison.decode! request.body
 
     case response do
       %{"status" => "ok"} ->
         {:ok, media_id}
       _ ->
-        {:err, "reason"}
+        {:err, request}
     end
   end
 end

@@ -13,6 +13,9 @@ Use at your own risk, this probably violates their TOS.
 
 ## Changelog
 
+### 0.1.4
+- more descriptive errors when trying to upload an invalid media type
+
 ### 0.1.3
 
 - remove uneeded items from HTTP reqs
