@@ -186,6 +186,7 @@ defmodule Naughtygram do
 
     case response do
       %{"media_id" => media_id, "status" => "ok"} ->
+        IO.inspect response
         configure(media_id, caption, identity, cookies)
         # {:ok, media_id}
       %{"status" => "fail"} ->
@@ -224,7 +225,8 @@ defmodule Naughtygram do
     response = Poison.decode! request.body
 
     case response do
-      %{"status" => "ok"} ->
+      %{"status" => "ok", "media" => %{"id" => media_id}} ->
+        IO.inspect response
         {:ok, media_id}
       _ ->
         {:err, request}
