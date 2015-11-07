@@ -13,6 +13,9 @@ Use at your own risk, this probably violates their TOS.
 
 ## Changelog
 
+### 0.1.5
+- fix a bug where `upload_media/4` was returning the internal media id, rather than the public (useful) one
+
 ### 0.1.4
 - more descriptive errors when trying to upload an invalid media type
 
