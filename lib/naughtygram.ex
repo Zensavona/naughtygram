@@ -44,7 +44,6 @@ defmodule Naughtygram do
         cookies = List.insert_at(cookies, -1, {"igfl", username})
         {:ok, cookies}
       _ ->
-        IO.inspect resp
         {:err, resp}
     end
   end
@@ -186,7 +185,6 @@ defmodule Naughtygram do
 
     case response do
       %{"media_id" => media_id, "status" => "ok"} ->
-        IO.inspect response
         configure(media_id, caption, identity, cookies)
         # {:ok, media_id}
       %{"status" => "fail"} ->
@@ -226,7 +224,6 @@ defmodule Naughtygram do
 
     case response do
       %{"status" => "ok", "media" => %{"id" => media_id}} ->
-        IO.inspect response
         {:ok, media_id}
       _ ->
         {:err, request}

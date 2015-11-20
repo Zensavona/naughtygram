@@ -13,6 +13,9 @@ Use at your own risk, this probably violates their TOS.
 
 ## Changelog
 
+### 0.1.6
+- fix a test which was failing due to the new errors not being handled properly
+
 ### 0.1.5
 - fix a bug where `upload_media/4` was returning the internal media id, rather than the public (useful) one
 

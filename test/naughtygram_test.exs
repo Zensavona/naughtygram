@@ -16,7 +16,7 @@ defmodule NaughtygramTest do
 
     {response, cookies} = Naughtygram.login_and_return_cookies @username, @password, identity
     assert response == :ok
-    assert length(cookies) == 6
+    assert length(cookies) == 7
   end
 
   test "returns expected error messages" do
@@ -24,7 +24,8 @@ defmodule NaughtygramTest do
 
     {response, reason} = Naughtygram.login_and_return_cookies "nah", "m8", identity
     assert response == :err
-    assert reason == "reason"
+    reason = Poison.decode!(reason.body, keys: :atoms)
+    assert reason.status == "fail"
   end
 
   test "can like some media" do
