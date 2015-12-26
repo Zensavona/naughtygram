@@ -4,7 +4,7 @@ defmodule Naughtygram.Mixfile do
   def project do
     [app: :naughtygram,
      version: "0.1.6",
-     elixir: "~> 1.1.0",
+     elixir: "~> 1.1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
@@ -36,7 +36,7 @@ defmodule Naughtygram.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.7.4"},
+      {:httpoison, "~> 0.8.0"},
       {:exprintf, "~> 0.1.6"},
       {:poison, "~> 1.5"},
       {:exvcr, "~> 0.3", only: [:dev, :test]},
