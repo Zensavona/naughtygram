@@ -10,13 +10,19 @@ defmodule Naughtygram do
   Log the user in and return a cookieset which should be sent with further
   requests to identify the session to IG.
 
-  Takes a username, password and identity generated with
-  `Naughtygram.Identity.create_random`.
+  Takes a username, password, identity generated with
+  `Naughtygram.Identity.create_random` and an optional proxy url.
 
   These identities contain the user agent, device guid, etc.. So should ideally be
   created once per user and stored for later use.
+
+  ## Example
+    iex(1)> identity = Naughtygram.Identity.create_random
+    %{device_id: "android-c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", guid: "c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", user_agent: "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)"}
+    iex(2)> Naughtygram.login_and_return_cookies("username", "password", identity, "127.0.0.1:8888")
+    {:ok, ...}
   """
-  def login_and_return_cookies(username, password, identity) do
+  def login_and_return_cookies(username, password, identity, proxy_url \\ :none) do
     url = @url <> "/accounts/login/"
     data = Poison.encode!(%{
       username: username,
@@ -34,7 +40,11 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
-    resp = HTTPoison.post!(url, body, headers)
+    resp = if proxy_url == :none do
+      HTTPoison.post!(url, body, headers)
+    else
+      HTTPoison.post!(url, body, headers, proxy: proxy_url)
+    end
 
     case resp do
       %{status_code: 200} ->
