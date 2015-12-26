@@ -3,8 +3,8 @@ defmodule Naughtygram.Mixfile do
 
   def project do
     [app: :naughtygram,
-     version: "0.1.6",
-     elixir: "~> 1.1.1",
+     version: "0.1.7",
+     elixir: "~> 1.1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
