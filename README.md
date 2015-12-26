@@ -13,6 +13,9 @@ Use at your own risk, this probably violates their TOS.
 
 ## Changelog
 
+### 0.1.7
+- Add an optional `proxy` argument to all methods on `Naughtygram` for proxying requests (see docs for usage instructions).
+
 ### 0.1.6
 - fix a test which was failing due to the new errors not being handled properly
 
