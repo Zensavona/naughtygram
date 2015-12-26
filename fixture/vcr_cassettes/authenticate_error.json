@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "ig_sig_key_version=4&<REMOVED>",
+      "headers": {
+        "User-Agent": "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://instagram.com/api/v1/accounts/login/"
+    },
+    "response": {
+      "body": "{\"status\":\"fail\",\"message\":\"The password you entered is incorrect. Please try again.\"}",
+      "headers": {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Language": "en",
+        "Content-Type": "application/json",
+        "Date": "Sat, 26 Dec 2015 05:27:18 GMT",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Set-Cookie": "csrftoken=placeholder; expires=Sat, 24-Dec-2016 05:27:18 GMT; Max-Age=31449600; Path=/",
+        "Vary": "Cookie, Accept-Language",
+        "Content-Length": "86",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

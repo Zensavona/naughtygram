@@ -1,0 +1,44 @@
+[
+  {
+    "request": {
+      "body": "ig_sig_key_version=4&<REMOVED>",
+      "headers": {
+        "User-Agent": "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": {
+        "proxy": "128.199.177.68:8888",
+        "cookie": {
+          "ds_user": "naughtygram_ci",
+          "mid": "Vn4lQAABAAEgvdbfr-4VZPIHUUeH",
+          "ds_user_id": "2360457829",
+          "sessionid": "IGSC929c08e7b2ab8e9d96aafe4f76cd1b75ac60d1f7c5dcd6e6baff553cae60301b%3AKeTRaKQnJZHAwLEjJjITw8FdxnGSqywM%3A%7B%22_token_ver%22%3A2%2C%22_auth_user_id%22%3A2360457829%2C%22_token%22%3A%222360457829%3AdDpJzbrYeqXjc3QoYp8P2QBvMcv0oV5L%3A457db0f1ed39f304da71a2227023f16e9ccc529ac5f07ea7022de73a184de72b%22%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22last_refreshed%22%3A1451107648.683005%2C%22_platform%22%3A1%7D",
+          "csrftoken": "afb00740ed649ec83b5ab2516e2d83b1",
+          "s_network": "",
+          "igfl": "naughtygram_ci"
+        },
+        "follow_redirect": true
+      },
+      "request_body": "",
+      "url": "https://instagram.com/api/v1/media/1065755140007338304_2045838015/comment/"
+    },
+    "response": {
+      "body": "{\"comment\":{\"status\":\"Active\",\"media_id\":1065755140007338304,\"text\":\"notbad\\/10\",\"created_at\":1451107649.0,\"user\":{\"username\":\"placeholder\",\"has_anonymous_profile_picture\":true,\"profile_pic_url\":\"https:\\/\\/placeholdit.imgix.net\\/~text?txtsize=33&txt=300x300&w=300&h=300\",\"full_name\":\"\",\"pk\":2360457829,\"is_private\":false},\"content_type\":\"comment\",\"created_at_utc\":1451078849,\"pk\":1148296647544873621,\"type\":0},\"status\":\"ok\"}",
+      "headers": {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Language": "en",
+        "Content-Type": "application/json",
+        "Date": "Sat, 26 Dec 2015 05:27:29 GMT",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Set-Cookie": "csrftoken=placeholder; expires=Sat, 24-Dec-2016 05:27:29 GMT; Max-Age=31449600; Path=/",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "Content-Length": "461",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

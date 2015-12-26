@@ -1,0 +1,34 @@
+[
+  {
+    "request": {
+      "body": "ig_sig_key_version=4&<REMOVED>",
+      "headers": {
+        "User-Agent": "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": {
+        "proxy": "128.199.177.68:8888"
+      },
+      "request_body": "",
+      "url": "https://instagram.com/api/v1/accounts/login/"
+    },
+    "response": {
+      "body": "{\"logged_in_user\":{\"username\":\"placeholder\",\"has_anonymous_profile_picture\":true,\"profile_pic_url\":\"https:\\/\\/placeholdit.imgix.net\\/~text?txtsize=33&txt=300x300&w=300&h=300\",\"full_name\":\"\",\"pk\":2360457829,\"is_private\":false},\"status\":\"ok\"}",
+      "headers": {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Language": "en",
+        "Content-Type": "application/json",
+        "Date": "Sat, 26 Dec 2015 05:27:26 GMT",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Set-Cookie": "ds_user=placeholder; expires=Fri, 25-Mar-2016 05:27:26 GMT; Max-Age=7776000; Path=/",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "Content-Length": "277",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

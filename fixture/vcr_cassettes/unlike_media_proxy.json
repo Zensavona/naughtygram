@@ -1,0 +1,76 @@
+[
+  {
+    "request": {
+      "body": "ig_sig_key_version=4&<REMOVED>",
+      "headers": {
+        "User-Agent": "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": {
+        "proxy": "128.199.177.68:8888"
+      },
+      "request_body": "",
+      "url": "https://instagram.com/api/v1/accounts/login/"
+    },
+    "response": {
+      "body": "{\"logged_in_user\":{\"username\":\"placeholder\",\"has_anonymous_profile_picture\":true,\"profile_pic_url\":\"https:\\/\\/placeholdit.imgix.net\\/~text?txtsize=33&txt=300x300&w=300&h=300\",\"full_name\":\"\",\"pk\":2360457829,\"is_private\":false},\"status\":\"ok\"}",
+      "headers": {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Language": "en",
+        "Content-Type": "application/json",
+        "Date": "Sat, 26 Dec 2015 05:27:20 GMT",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Set-Cookie": "ds_user=placeholder; expires=Fri, 25-Mar-2016 05:27:20 GMT; Max-Age=7776000; Path=/",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "Content-Length": "277",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "ig_sig_key_version=4&<REMOVED>",
+      "headers": {
+        "User-Agent": "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": {
+        "proxy": "128.199.177.68:8888",
+        "cookie": {
+          "ds_user": "naughtygram_ci",
+          "mid": "Vn4lOAABAAFT7d5Z25isF7naN0Mx",
+          "ds_user_id": "2360457829",
+          "sessionid": "IGSC322d37e88b61cce2700cf57d7007610d3a8896faaec1df9f6bf368ebdda3ec51%3AWxQ4mQhrJzQW6iwG45t5zn9clUBzDIMK%3A%7B%22_token_ver%22%3A2%2C%22_auth_user_id%22%3A2360457829%2C%22_token%22%3A%222360457829%3AM4lRfqOJAbF1wVPe2jTYKmYoMXLt69lb%3A809bae4b988c697c0bbb4d8c3a37d05aebe16b9e4a2dc9db19b787812c9e7365%22%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22last_refreshed%22%3A1451107640.631219%2C%22_platform%22%3A1%7D",
+          "csrftoken": "6cb18e8009e1578412be795c7a18c9c1",
+          "s_network": "",
+          "igfl": "naughtygram_ci"
+        },
+        "follow_redirect": true
+      },
+      "request_body": "",
+      "url": "https://instagram.com/api/v1/media/1065755140007338304_2045838015/unlike/"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\"}",
+      "headers": {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Language": "en",
+        "Content-Type": "application/json",
+        "Date": "Sat, 26 Dec 2015 05:27:21 GMT",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Set-Cookie": "csrftoken=placeholder; expires=Sat, 24-Dec-2016 05:27:21 GMT; Max-Age=31449600; Path=/",
+        "Vary": "Cookie, Accept-Language",
+        "Content-Length": "15",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
