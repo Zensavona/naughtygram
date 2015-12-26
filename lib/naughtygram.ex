@@ -61,7 +61,7 @@ defmodule Naughtygram do
   @doc """
   Likes a media item as the user asociated with passed cookie and identity.
   """
-  def like_media(id, identity, cookies) do
+  def like_media(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/like/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
@@ -73,6 +73,10 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
     case response do
       %{"status" => "ok"} ->
@@ -85,7 +89,7 @@ defmodule Naughtygram do
   @doc """
   Unlikes a media item as the user asociated with passed cookie and identity.
   """
-  def unlike_media(id, identity, cookies) do
+  def unlike_media(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/unlike/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
@@ -97,6 +101,10 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
     case response do
       %{"status" => "ok"} ->
@@ -109,7 +117,7 @@ defmodule Naughtygram do
   @doc """
   Follows a user as the user asociated with passed cookie and identity.
   """
-  def follow_user(id, identity, cookies) do
+  def follow_user(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/friendships/create/#{id}/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
@@ -121,6 +129,10 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
     case response do
       %{"status" => "ok"} ->
@@ -133,7 +145,7 @@ defmodule Naughtygram do
   @doc """
   Unfollows a user as the user asociated with passed cookie and identity.
   """
-  def unfollow_user(id, identity, cookies) do
+  def unfollow_user(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/friendships/destroy/#{id}/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
@@ -145,6 +157,10 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
     case response do
       %{"status" => "ok"} ->
@@ -157,7 +173,7 @@ defmodule Naughtygram do
   @doc """
   Comment on some media
   """
-  def add_comment(id, text, identity, cookies) do
+  def add_comment(id, text, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/comment/"
     options = [hackney: [cookie: cookies, follow_redirect: true]]
     body = Crypto.signed_body("{\"comment_text\":\"#{text}\"}")
@@ -168,6 +184,10 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     response = Poison.decode! HTTPoison.post!(url, body, headers, options).body
     case response do
       %{"status" => "ok"} ->
@@ -180,7 +200,7 @@ defmodule Naughtygram do
   @doc """
   Upload a picture from the filesystem
   """
-  def upload_media(photo, caption, identity, cookies) do
+  def upload_media(photo, caption, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/upload/"
     options = [hackney: [cookie: cookies, follow_redirect: true]]
     timestamp = to_string(:os.system_time(:seconds))
@@ -190,12 +210,16 @@ defmodule Naughtygram do
     ]
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     request = HTTPoison.post!(url, {:multipart, [{"device_timestamp", timestamp}, {:file, photo, { ["form-data"], [name: "\"photo\"", filename: "\"#{photo}\""]},[]}]}, headers, options)
     response = Poison.decode! request.body
 
     case response do
       %{"media_id" => media_id, "status" => "ok"} ->
-        configure(media_id, caption, identity, cookies)
+        configure(media_id, caption, identity, cookies, proxy_url)
         # {:ok, media_id}
       %{"status" => "fail"} ->
         {:err, response.message}
@@ -204,7 +228,7 @@ defmodule Naughtygram do
     end
   end
 
-  defp configure(media_id, caption, identity, cookies) do
+  defp configure(media_id, caption, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/configure/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
@@ -229,6 +253,10 @@ defmodule Naughtygram do
     body = Crypto.signed_body(data)
 
     HTTPoison.start
+
+    # add proxy option
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+
     request = HTTPoison.post!(url, body, headers, options)
     response = Poison.decode! request.body
 
