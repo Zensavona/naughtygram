@@ -234,7 +234,7 @@ defmodule Naughtygram do
     end
   end
 
-  defp configure(media_id, caption, identity, cookies, proxy_url \\ :none) do
+  defp configure(media_id, caption, identity, cookies, proxy_url) do
     url = @url <> "/media/configure/"
 
     options = [hackney: [cookie: cookies, follow_redirect: true]]
