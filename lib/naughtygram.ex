@@ -17,10 +17,10 @@ defmodule Naughtygram do
   created once per user and stored for later use.
 
   ## Example
-    iex(1)> identity = Naughtygram.Identity.create_random
-    %{device_id: "android-c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", guid: "c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", user_agent: "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)"}
-    iex(2)> Naughtygram.login_and_return_cookies("username", "password", identity, "127.0.0.1:8888")
-    {:ok, ...}
+      iex(1)> identity = Naughtygram.Identity.create_random
+      %{device_id: "android-c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", guid: "c2c1eac1-df83-496a-aaa6-dc5f4c001aa6", user_agent: "Instagram 4.1.1 Android (10/2.4.4; 320; 720x1280; samsung; GT-I9100; GT-I9100; smdkc210; en_US)"}
+      iex(2)> Naughtygram.login_and_return_cookies("username", "password", identity, "127.0.0.1:8888")
+      {:ok, ...}
   """
   def login_and_return_cookies(username, password, identity, proxy_url \\ :none) do
     url = @url <> "/accounts/login/"
@@ -60,6 +60,7 @@ defmodule Naughtygram do
 
   @doc """
   Likes a media item as the user asociated with passed cookie and identity.
+  Takes a media id, identity, cookies and optional proxy url
   """
   def like_media(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/like/"
@@ -88,6 +89,7 @@ defmodule Naughtygram do
 
   @doc """
   Unlikes a media item as the user asociated with passed cookie and identity.
+  Takes a media id, identity, cookies and optional proxy url
   """
   def unlike_media(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/unlike/"
@@ -116,6 +118,7 @@ defmodule Naughtygram do
 
   @doc """
   Follows a user as the user asociated with passed cookie and identity.
+  Takes a user id, identity, cookies and optional proxy url
   """
   def follow_user(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/friendships/create/#{id}/"
@@ -144,6 +147,7 @@ defmodule Naughtygram do
 
   @doc """
   Unfollows a user as the user asociated with passed cookie and identity.
+  Takes a user id, identity, cookies and optional proxy url
   """
   def unfollow_user(id, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/friendships/destroy/#{id}/"
@@ -172,6 +176,7 @@ defmodule Naughtygram do
 
   @doc """
   Comment on some media
+  Takes a media id, comment text, identity, cookies and optional proxy url
   """
   def add_comment(id, text, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/#{id}/comment/"
@@ -199,6 +204,7 @@ defmodule Naughtygram do
 
   @doc """
   Upload a picture from the filesystem
+  Takes a photo filepath, caption text, identity, cookies and optional proxy url
   """
   def upload_media(photo, caption, identity, cookies, proxy_url \\ :none) do
     url = @url <> "/media/upload/"
