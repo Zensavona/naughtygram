@@ -13,6 +13,9 @@ Use at your own risk, this probably violates their TOS.
 
 ## Changelog
 
+### 0.2.0
+- Add the `Naughtygram.activity_inbox/3` function for getting a user's notifications
+
 ### 0.1.7
 - Add an optional `proxy` argument to all methods on `Naughtygram` for proxying requests (see docs for usage instructions).
 
@@ -26,6 +29,5 @@ Use at your own risk, this probably violates their TOS.
 - more descriptive errors when trying to upload an invalid media type
 
 ### 0.1.3
-
 - remove uneeded items from HTTP reqs
 - add the `Naughtygram.upload_media/4` function for (who would have guessed it...) uploading media.
