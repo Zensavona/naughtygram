@@ -273,4 +273,67 @@ defmodule Naughtygram do
         {:err, request}
     end
   end
+
+  @doc """
+  This is for getting the user's recent notifications, which appear in the "you" tab of the "activity" section in Instagram's app and will be sent to the user as push notifications if they have them enabled.
+  """
+  def activity_inbox(identity, cookies, proxy_url \\ :none) do
+    url = @url <> "/news/inbox/?"
+
+    options = [hackney: [cookie: cookies, follow_redirect: true]]
+
+    headers = [
+      {"User-Agent", identity.user_agent},
+      {"Content-Type", "application/x-www-form-urlencoded"}
+    ]
+
+    HTTPoison.start
+
+    options = if proxy_url == :none, do: options, else: Dict.put(options, :proxy, proxy_url)
+    response = HTTPoison.get!(url, headers, options).body
+
+    response
+    |> String.replace("\n", "")
+    |> Floki.find("ul")
+    |> Floki.find("li")
+    |> Enum.map(&parse_inbox_item/1)
+  end
+
+  defp parse_inbox_item(item) do
+    {_el, _attrs, children} = item
+
+    [time] = Floki.find(children, "span.timestamp")
+    [avatar] = Floki.find(children, "span.avatar")
+    [description] = Floki.find(children, "span.description")
+
+    %{time: parse_item_time(time), user: parse_item_user(avatar), description: parse_item_description(description)}
+  end
+
+  defp parse_item_time(time) do
+    {_el, _attrs, [words]} = time
+    [timestamp] = Floki.attribute(time, "data-timestamp")
+    %{timestamp: timestamp, words: words}
+  end
+
+  defp parse_item_user(avatar) do
+    username = avatar |> Floki.find("a") |> List.first |> Floki.attribute("href") |> List.first |> String.replace("instagram://user?username=", "")
+    [photo] = avatar |> Floki.find("img") |> Floki.attribute("src")
+    %{username: username, profile_photo: photo}
+  end
+
+  defp parse_item_description(description) do
+    {_, _, text} = description
+    case text |> List.last |> String.strip do
+      "liked your photo." = text ->
+        %{type: "like", text: text}
+      "liked your video." = text ->
+        %{type: "like", text: text}
+      "left a comment on your photo:" = text ->
+        %{type: "comment", text: text}
+      "started following you." = text ->
+        %{type: "follow", text: text}
+      "mentioned you in a comment:" = text ->
+        %{type: "mention", text: text}
+    end
+  end
 end
