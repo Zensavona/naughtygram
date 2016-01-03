@@ -3,7 +3,7 @@ defmodule Naughtygram.Mixfile do
 
   def project do
     [app: :naughtygram,
-     version: "0.1.7",
+     version: "0.2.0",
      elixir: "~> 1.1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -39,6 +39,7 @@ defmodule Naughtygram.Mixfile do
       {:httpoison, "~> 0.7.4"},
       {:exprintf, "~> 0.1.6"},
       {:poison, "~> 1.5"},
+      {:floki, "~> 0.7"},
       {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
